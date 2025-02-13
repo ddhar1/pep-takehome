@@ -13,15 +13,10 @@ terraform apply
 I ran the API on python 3.10.11 on a Windows machine with Powershell
 You'll need to set up a local python environment, activate it, and then install requirements.txt file
 ```
+cd api
 python -m venv venv
 .\venv\Scripts\Activate.ps1 # source venv/bin/activate on unix
-```
-
-Then install the requirements package, go into the `/api` dir and run the application
-
-```
 python -m pip install -r requirements.txt
-cd api
 flask run
 ```
 
