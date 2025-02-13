@@ -22,13 +22,6 @@ flask run
 
 ## TODO: visualization
 
-# At larger volumes
-* Data simulator `.py` is currently deployed with AWS Lambda. 
-    * If we were scraping large zip files from a website (which I have done to get ISO data): lambda probably would not be a good fit due to run time (15 min) and memory constraints (10 GB tops) limit of a lambda function. 
-    * **TODO**: aws lambda trigger limits - if a lot of s3 puts at one time?
-
-* API (app.py):
-
 
 
 # Other things
