@@ -1,4 +1,4 @@
-# 
+# Design Decisions
 
 ## 1. Simulator of Data Feed: 
 * Tf that set up the lambda function simulating the data is `tf\lambda_01_data_sim.tf`
@@ -9,7 +9,8 @@ I decided to use AWS Eventbridge (formally known as AWS Cloudwatch Events) to la
 
 Lambda was used since, even with the function created in Part 2, the usage will still be within the free tier.
 
-If we were scraping and downloading large zip files from a website (which I have done to get ISO data): Lambda may not be a good fit due to memory constraints (10 GB tops)
+If this lambda function was being used to scrape and download large zip files from a website (which I have done to get ISO data): Lambda may not be a good fit due to memory constraints (10 GB tops)
+
 
 ### At Scale
 Let's say that there are 20K sites (instead of 20 sites)
@@ -20,6 +21,8 @@ However, let's say that each site's data is saved seperately?
 * each file for each site, saved every 5 min is 1KB
 * The total for the puts would be 1 KB * 12 times per hour * 20K sites * 24 hrs = 5.8M requests
 * Cost in S3 will still be small - ~$30 
+
+TODO: issues with perf at scale?
 
 ## 2. AWS Lambda Fx for Processing
 * tf: `tf\lambda_02_s3_to_dynamo.tf`
@@ -34,12 +37,12 @@ However, let's once again hypothesize the cost when there are 20K sites, with se
 
 At 20K puts per 5 minutes, It would definitely make more sense to periodically check the S3 bucket for more data, instead of have an s3 put triggered many times.
 
+TODO: issues with perf at scale?
 
-3. Visualizing the processed Data
-TODO
-
-4. API
+## 4. API
 * `api\app.py`
 The prompt asked us to index the table on site, and sort by timestamp. 
 *TODO: cost of each write to the db?
 
+### At Scale
+This API would probably need mul

@@ -1,3 +1,7 @@
+# See info.md for Design Decisions
+
+---
+
 # How To run
 
 ## Set up Parts 1-3 in AWS (lambda Functions, and DynamoDB)
@@ -30,7 +34,7 @@ cd visualization
 python visualization.py
 ```
 
-![avg consumption vs generated per site](visualization\visualization_output.png)
+![avg consumption vs generated per site](visualization/visualization_output.png)
 
 # Other things
 * I initially attempted to blindly query the API dynamodb requires that numbers be stored as a decimal. however boto3's dynambodb.table.query function doesn't know how to handle Decimals. I found a package online to address this issue
