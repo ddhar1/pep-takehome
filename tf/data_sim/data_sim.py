@@ -6,11 +6,11 @@
 - `energy_consumed_kwh` (float): Energy consumed in kWh.
 
 """
-import boto3
 from datetime import datetime
 import json
 from os import getenv
 from random import seed, uniform
+import boto3
 
 bucket_name = getenv('AWS_BUCKET_NAME', 'dd-peptakehome')
 path = getenv("SITE_DATA_FILE_PREFIX",'raw/site_flow/')
@@ -18,18 +18,20 @@ iso_format = '%Y-%m-%dT%H%M%S'
 seed(5)
 
 def lambda_handler(event, context):
+    """
+    Generates data and places it in S3
+    """
     s3 = boto3.resource('s3')
 
     now = datetime.utcnow() #
 
     date_path_str = now.strftime("%Y/%m/%d")
     now_str = now.strftime(iso_format)
-    print("About to create dummy data for time: ", now)
     filename = path + f'{date_path_str}/' + f'{now_str}.json'
-    print("here is filename: ", filename)
+    print("Will save data to this file", filename)
 
     s3object = s3.Object(bucket_name, filename)
-    
+
     output = generate_sites_data(now)
     print("Generated file output, of length", len(output))
     s3object.put(
