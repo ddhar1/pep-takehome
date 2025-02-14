@@ -37,7 +37,7 @@ However, let's once again hypothesize the cost when there are 20K sites, with se
 
 At 20K puts per 5 minutes, It may make more sense to periodically check the S3 bucket for more data, instead of have an s3 put trigger invoke many lambda runs.
 
-## 4. API
+## 3. API
 * `api\app.py`
 The prompt asked us to index the table on site, and sort by timestamp
 
@@ -47,7 +47,7 @@ At scale (if there a lots of queries returning a lot items from the dynamodb dat
 DynamoDB should be able to handle many requests at scale (assuming both the Site_id and a range for the sort key is provided in all queries)
 
 
-# if I had more time
+# Other things I'd do with more time:
 * Add proper API documentation
-* I have another branch where I started to add a github action that would lint the code using pylint - so I would finish that.
-
+* a different visualization, that ingests more hours of data. Might be more useful to visualize the rate of anomolies per site.
+* I have another branch where I started to add a github action that would lint the code using pylint - so I would finish that. - https://github.com/ddhar1/pep-takehome/blob/5b4854c260b5e9d7f92f19f389036d70adf60843/.github/workflows/pylint.yml
