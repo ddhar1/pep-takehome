@@ -13,6 +13,8 @@ terraform plan # check to make sure 13 number of resources are being made
 terraform apply
 ```
 
+The user that terraform is using should at least have access t
+
 ## API
 First, install the required python packages, by setting up a local python environment
 ```
@@ -26,6 +28,8 @@ I ran the API on python 3.10.11 on a Windows machine with Powershell
 cd api
 flask run
 ```
+
+![api output example](api/screenshot_apioutput.png)
 
 ## Visualization
 Use the same python environment / requirements file.
@@ -41,7 +45,7 @@ python visualization.py
     * In order to convert decimal to float, There's an extra O(N) iteration through the entire output of the API. This may not be ideal if this data needs to appear somewhere quickly
 
 # if I had more time
-* annotate the API code endpoints with swagger yaml format info about the API - and creae an endpoint where the swagger documentation could autogenerate
-* 
+* Add proper API documentation
+* I have another branch where I started to add a github action that would lint the code using pylint - so I would finish that.
 
 
