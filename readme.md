@@ -40,12 +40,4 @@ python visualization.py
 
 ![avg consumption vs generated per site](visualization/visualization_output.png)
 
-# Other things
-* I initially attempted to blindly query the API dynamodb requires that numbers be stored as a decimal. however boto3's dynambodb.table.query function doesn't know how to handle Decimals. I found a package online to address this issue
-    * In order to convert decimal to float, There's an extra O(N) iteration through the entire output of the API. This may not be ideal if this data needs to appear somewhere quickly
-
-# if I had more time
-* Add proper API documentation
-* I have another branch where I started to add a github action that would lint the code using pylint - so I would finish that.
-
 
