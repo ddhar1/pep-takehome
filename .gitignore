@@ -1,0 +1,6 @@
+venv/
+*.pyc
+*.log
+.terraform*
+__pycache__/
+.vscode/
