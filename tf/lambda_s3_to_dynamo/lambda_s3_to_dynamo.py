@@ -19,9 +19,7 @@ from decimal import Decimal, Inexact, Rounded
 logger = logging.getLogger()
 logger.setLevel("INFO")
 
-# Inhibit Inexact Exceptions
 DYNAMODB_CONTEXT.traps[Inexact] = 0
-# Inhibit Rounded Exceptions
 DYNAMODB_CONTEXT.traps[Rounded] = 0
 
 table_name = os.environ["DYNAMODB_TABLE"]
@@ -79,10 +77,6 @@ def lambda_handler(event, context):
         "body": json.dumps({"message": f"All {records_added} items saved"})
         }
 
-
-
-
-
 def serialize_event_data(json_data) -> bucket_key:
     """
     Extract bucket name and file key from json_data - which should be s3 trigger
@@ -97,13 +91,13 @@ def serialize_event_data(json_data) -> bucket_key:
             raise ValueError("Expected eventSource to be from aws:s3, and it is", record['eventSource'])
         if record.get('eventName') != "ObjectCreated:Put":
             raise ValueError("Expected event name ObjectCreated:Put. It is", record['eventName'])
-        
+
         bucket_name = record['s3']["bucket"]["name"]
         s3_key = record["s3"]["object"]["key"]
         print("S3 Key:", s3_key)
         print("bucket name: ", bucket_name)
         bucket_key_trigger = bucket_key(bucket_name, s3_key)
-    
+
         #s3_data_size = json_data["Records"][0]["s3"]["object"]["size"]
-    
+
     return bucket_key_trigger
