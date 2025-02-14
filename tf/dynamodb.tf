@@ -1,4 +1,6 @@
 /*
+  DynamoDB configuration
+
 - Store the processed data in a DynamoDB table with the following schema:
   - **Partition Key**: `site_id`
   - **Sort Key**: `timestamp`
@@ -12,8 +14,8 @@
 resource "aws_dynamodb_table" "site_energy_stats" {
   name           = var.site_data_dynamodb_table_name
   billing_mode   = "PROVISIONED"
-  read_capacity  = 20
-  write_capacity = 20
+  read_capacity  = 20 # free tier: 25 provisioned Read Capacity Units 
+  write_capacity = 20 # free tier: 25 provisioned Write
   hash_key       = "site_id"
   range_key      = "timestamp"
 

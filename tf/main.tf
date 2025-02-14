@@ -1,3 +1,7 @@
+/*
+  Configures Terraform, AWS
+*/
+
 terraform {
   required_providers {
     aws = {

@@ -1,3 +1,10 @@
+/*
+ Config for variables used throughout other
+ tf files. Would use tfvars file if these tf files
+ were meant to be more modular 
+ and abstract for different usecases
+*/
+
 variable "tag__project_name" {
   type    = string
   default = "pep_takehome"
@@ -28,6 +35,7 @@ variable "lambda_api_filename" {
   default = "api_for_site_data"
 }
 
+# moved this to lambda config files
 # variable "process_site_data_dynamo_py_script" {
 #     type = string
 #     default = "../lambda_scripts"

@@ -1,4 +1,10 @@
-# IAM role for Lambda
+/*
+ Lambda role config
+ Also includes policies attached to lambda role 
+ that give it access to DynamoDB, S3, and Cloudwatch
+*/
+
+# IAM Role
 resource "aws_iam_role" "lambda_role" {
   name = "peptakehome_lambda_role"
 
@@ -16,7 +22,7 @@ resource "aws_iam_role" "lambda_role" {
   })
 }
 
-# IAM policy for DynamoDB access
+# Policy for DynamoDB access
 resource "aws_iam_role_policy" "dynamodb_policy" {
   name = "dynamodb_access"
   role = aws_iam_role.lambda_role.id
@@ -41,7 +47,7 @@ resource "aws_iam_role_policy" "dynamodb_policy" {
 }
 
 
-# Custom policy for S3 read access
+# Policy for S3 read access
 resource "aws_iam_role_policy" "s3_policy" {
   name = "s3_read_access"
   role = aws_iam_role.lambda_role.id
@@ -64,7 +70,7 @@ resource "aws_iam_role_policy" "s3_policy" {
   })
 }
 
-# CloudWatch Logs policy
+# Policy for CloudWatch Logs
 resource "aws_iam_role_policy_attachment" "lambda_logs" {
   role       = aws_iam_role.lambda_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
